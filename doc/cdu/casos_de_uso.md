@@ -64,7 +64,7 @@
 4. Confirmar dados.
 
 ## CDU 06 - Visualização do mural
-**Atores:** Alunos e professores. 
+**Atores:** Alunos, professores e visitantes. 
 
 **Fluxo principal:**
 1. Acessar ao perfil a partir de algum link ou botão.
