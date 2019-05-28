@@ -11,6 +11,8 @@
 - [CDU 07 - Cadastro de usuários](#cdu-07---Cadastro-de-usuários)
 - [CDU 08 - Cadastro de turmas](#cdu-08---Cadastro-de-turmas)
 - [CDU 09 - Inserção de informações no mural](#cdu-09---Inserção-de-informações-no-mural)
+- [CDU 10 - Envio de Arquivos](#cdu-10---Envio-de-arquivos)
+- [CDU 11 - Chat de mensagens](#cdu-11---Chat-de-mensagens)
 
 
 # Descrição
@@ -31,7 +33,7 @@
 ## CDU 02 - Acesso às turmas
 **Atores:** Alunos e professores.
 
-**Pré-condições:** Deverá estar logado em uma conta e estar dentro de alguma turma.
+**Pré-condições:** Deverá estar logado como aluno ou professor e estar dentro de alguma turma.
 
 **Fluxo principal:**
 1. Acessar às turmas a partir de algum botão ou link no site. 
@@ -39,7 +41,7 @@
 ## CDU 03 - Acesso às matérias
 **Atores:** Alunos e professores. 
 
-**Pré-condições:** Deverá estar logado em uma conta e estar dentro de alguma matéria.
+**Pré-condições:** Deverá estar logado como aluno e professor e estar dentro de alguma matéria.
 
 **Fluxo principal:**
 1. Acessar às matérias dentro das turmas.
@@ -47,7 +49,7 @@
 ## CDU 04 - Vizualização do perfil
 **Atores:** Alunos e professores. 
 
-**Pré-condições:** Deverá estar logado em uma conta.
+**Pré-condições:** Deverá estar logado como aluno ou professor.
 
 **Fluxo principal:**
 1. Acessar ao perfil a partir de algum link ou botão.
@@ -55,7 +57,7 @@
 ## CDU 05 - Personalização do perfil
 **Atores:** Alunos e professores. 
 
-**Pré-condições:** Deverá estar logado em uma conta.
+**Pré-condições:** Deverá estar logado como aluno ou professor.
 
 **Fluxo principal:**
 1. Acessar ao perfil a partir de algum link ou botão.
@@ -106,3 +108,22 @@
 **Fluxo principal:**
 1. Digitar informação.
 2. Enviar informação.
+
+## CDU 10 - Envio de arquivos
+**Atores:** Professores. 
+
+**Pré-condições:** Deverá estar logado como professor.
+
+**Fluxo principal:**
+1. Escolher um arquivo no computador.
+2. Escrever um título para o arquivo.
+3. Enviar arquivo para as turmas de sua escolha.
+
+## CDU 11 - Chat de mensagens
+**Atores:** Alunos e professores. 
+
+**Pré-condições:** Deverá estar logado como aluno ou professor.
+
+**Fluxo principal:**
+1. Escrever uma mensagem para uma ou mais turmas.
+2. Enviar mensagem.
