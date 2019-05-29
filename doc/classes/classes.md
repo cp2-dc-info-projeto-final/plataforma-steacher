@@ -48,7 +48,7 @@
 + login
 + senha
 + Turmas
-+ Máteria
++ Materia
 
 ***Métodos:***
 + mudarAtributo( )
