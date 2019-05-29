@@ -44,6 +44,7 @@
 + nome
 + nascimento
 + matricula
++ biografia
 + login
 + senha
 + Turmas
