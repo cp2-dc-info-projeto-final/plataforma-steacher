@@ -14,7 +14,6 @@
 ## Usuario
 ***Atributos:***
 + nome
-+ nascimento
 + login
 + senha
 
@@ -58,7 +57,6 @@
 
 ***Atributos:***
 + nome
-+ nascimento
 + login
 + senha
 
