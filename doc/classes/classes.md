@@ -60,6 +60,9 @@
 + login
 + senha
 
+***Métodos:***
+- mudarAtributo( )
+
 ## Turma
 ***Atributos:***
 + nome
