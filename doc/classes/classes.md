@@ -59,7 +59,6 @@
 ***Atributos:***
 + nome
 + nascimento
-+ matricula
 + login
 + senha
 
