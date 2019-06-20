@@ -3,10 +3,10 @@ Projeto Final do Curso Técnico em Desenvolvimento de Sistemas do Colégio Pedro
 
 ## Integrantes:
 + Leonardo Henrique Santos Lopes
-+ Felipe Silva Melo Bruno 
+>+ Felipe Silva 
 + Sabrina Cavalcante de Souza
 + Ana Luiza Diniz Fernandes
-+ Daniel Moreira dos Passos
+>+ Daniel Moreira
 
 ## Sumário:
 - [Proposta](#proposta)
