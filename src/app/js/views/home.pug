@@ -12,11 +12,13 @@ html(lang="pt-br")
         
         title Home
 
+    - var logo = ['brand-logo', 'center']
+
     body
-        div(class="navbar-fixed")
+        div.navbar-fixed
             nav
-                div(id="navbar" class="nav-wrapper")
-                    a(class="brand-logo center" href="/")
-                        i(class="material-icons") mouse
+                div#navbar.nav-wrapper
+                    a(class=logo href="/")
+                        i.material-icons mouse
 
     script(type="text/javascript" src="js/materialize.min.js")
