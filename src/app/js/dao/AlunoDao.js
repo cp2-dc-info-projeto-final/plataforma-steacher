@@ -1,44 +1,44 @@
 class AlunoDao{
     
     constructor(){
-        this._aluno;
-        this._perfil;
         this._db = require('../config/firebase').firestore();
     }
 
-    set aluno(aluno, turma){
-        this.db.collection(`turmas/${turma.id}/alunos`).add({
+    setAluno(aluno){
+        this._db.collection(`turmas/${aluno.turma}/alunos`).add({
             nome: aluno.nome,
-            curso: aluno.curso,
-            turma: turma.data().nome,
-            turno: aluno.turno,
-            nascimento: aluno.nascimento,
-            perfil: {
-                foto: aluno.perfil.foto,
-                status: aluno.perfil.status
-            }
+            sobrenome: aluno.sobrenome,
+            matricula: aluno.matricula,
+            turma: aluno.turma
         })
-            .then(doc => this._aluno = doc)
+            .then(doc =>{
+                this._db.collection(`usuarios`).add({
+                    id: doc.id,
+                    turma: aluno.turma, //Futuramente guardar o id da Turma.
+                    email: aluno.email,
+                    senha: aluno.senha
+                })
+                    .then(console.log('Usuario criado com sucesso!'))
+                    .catch(error => console.log(error));
+            })
             .catch(error => console.log(error));
         
     }
 
-    get aluno(){
-        return this._db.collection(`turmas/${this.aluno.data().turma}/alunos/${this._aluno.data().id}`).get()
-    }
-
-    set perfil(){
-        this.db.collection(`turmas/${turma.id}/alunos/${this.aluno.data().id}/perfil`).add({
-            foto: aluno.perfil.foto,
-            status: aluno.perfil.status
-            
+    getAluno(dados){
+        return new Promise((resolve, reject) =>{
+            this._db.collection(`usuarios`)
+                .where('email', '==', dados.email)
+                .where('senha', '==', dados.senha)
+                .get()
+                    .then(usuarioQuery => usuarioQuery.forEach(usuario =>{
+                        this._db.collection(`turmas/${usuario.data().turma}/alunos`).doc(usuario.data().id).get()
+                            .then(dados => resolve(dados))
+                            .catch(error => console.log(error));
+                    }))
+                    .catch(error => reject(error));
         })
-            .then(doc => this._perfil = doc)
-            .catch(error => console.log(error));
-    }
-
-    get perfil(){
-        return this.db.collection(`turmas/${turma.id}/alunos/${this.aluno.data().id}/perfil`);
+        
     }
 
 }

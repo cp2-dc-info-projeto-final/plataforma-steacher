@@ -1,24 +1,36 @@
 doctype
 html(lang="pt-br")
-
+    
     head
-        link(rel="stylesheet", href="css/lib/reset/reset.css")
-        link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
-        link(rel="stylesheet", href="css/lib/materialize/materialize.min.css")
+        include ./default/head
         link(rel="stylesheet", href="css/styles/home.css")
 
-        meta(charset="UTF-8")
-        meta(name="viewport" content="width=device-width, initial-scale=1.0")
-        
         title Home
-
-    - var logo = ['brand-logo', 'center']
-
     body
-        div.navbar-fixed
-            nav
-                div#navbar.nav-wrapper
-                    a(class=logo href="/")
-                        i.material-icons mouse
+        include ./default/navbar
+        
+        div#form.row
+            form(class="col l4 offset-l4" action="/login" method="POST")
+                h1.center Login
+                div.row
+                    div(class="input-field col s12")
+                        input(placeholder="Digite seu e-mail" name="email" id="email" type="email" class="validate")
+                        label(for="email") E-mail
+                    
+                    div(class="input-field col s12")
+                        input(placeholder="Digite sua senha" name="senha" id="senha" type="password" class="validate")
+                        label(for="senha") Senha
+                        
+                        a(href="/cadastro") Cadastre-se
+                    
+                    div(class="input-field col s4 offset-s8")    
+                        button(class="btn waves-effect waves-light deep-purple lighten-1 col s12" type="submit") Entrar
+                            i(class="material-icons right") send
+                    
 
-    script(type="text/javascript" src="js/materialize.min.js")
+                    
+        
+                
+        //- include ./default/footer
+
+        include ./default/scripts
