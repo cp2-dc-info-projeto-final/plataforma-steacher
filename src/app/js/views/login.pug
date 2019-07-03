@@ -11,7 +11,7 @@ html(lang="pt-br")
         
         div#form.row
             form(class="col l4 offset-l4" action="/login" method="POST")
-                h1.center Login
+                h1.center(style="font-style: castellar") Login
                 div.row
                     div(class="input-field col s12")
                         input(placeholder="Digite seu e-mail" name="email" id="email" type="email" class="validate")
@@ -26,11 +26,13 @@ html(lang="pt-br")
                     div(class="input-field col s4 offset-s8")    
                         button(class="btn waves-effect waves-light deep-purple lighten-1 col s12" type="submit") Entrar
                             i(class="material-icons right") send
-                    
-
-                    
-        
                 
         //- include ./default/footer
 
         include ./default/scripts
+        script.
+            System.defaultJSExtensions = true;
+            System.import('/home/controller')
+                .catch(function(err){
+                    console.error(err);
+            });

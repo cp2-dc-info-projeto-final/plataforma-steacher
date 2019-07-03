@@ -1,3 +1,10 @@
+h1{
+    /* font-family: 'Rockwell', Arial, Helvetica, sans-serif; */
+    font-size: 600%;
+    /* font-style: italic;
+    color: #1a237e; */
+}
+
 #form{
     padding-top: 2%;
 }
@@ -5,9 +12,3 @@
 .background-theme{
     background-color: #7e57c2; 
 }
-
-.waves-light {
-    /* The alpha value allows the text and background color
-    of the button to still show through. */
-     background-color: rgba(121, 85, 72, 0.65);
-   }
