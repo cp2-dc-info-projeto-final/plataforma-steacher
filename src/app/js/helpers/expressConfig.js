@@ -7,5 +7,4 @@ module.exports = (app, express) =>{
     app.use(bodyParser.urlencoded({extended: true}));
     app.use('/css', express.static('app/css'));
     app.use('/js', express.static('app/js'));
-    app.use('/npm', express.static('/node_modules/'))
 }

@@ -1,0 +1,13 @@
+doctype
+html(lang="pt-br")
+
+    head
+        include ./default/head.pug
+
+        title Home
+    body
+        include ./default/navbar
+        
+        button(type="submit" action="/sign-out" method="GET") Desconectar
+    
+        include ./default/scripts
