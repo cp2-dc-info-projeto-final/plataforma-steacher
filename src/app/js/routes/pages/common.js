@@ -17,13 +17,8 @@ module.exports = (app) => {
                 console.log(user.uid);
                 console.log(user.providerData);
                 resp.render('home.pug');
-                resp.send();
-            } else {
-                resp.render('login.pug', {
-                    dir: jsDir
-                });
-            }
-            resp.send();
+            } else resp.render('login.pug', { dir: jsDir });
+            resp.status(200).send();
         });
     });
 
@@ -43,7 +38,7 @@ module.exports = (app) => {
 
     app.get('/cadastro', (req, resp) => {
         resp.render('cadastro.pug');
-        resp.send();
+        resp.status(200).send();
     })
 
     app.post('/cadastro', (req, resp) => {
@@ -66,9 +61,8 @@ module.exports = (app) => {
             .then(() => {
                 resp.redirect('/');
                 resp.status(200).send();
-            }).catch(function (error) {
-                resp.status(500).send(error);
-            });
+            })
+            .catch(error => resp.status(500).send(error));
     })
 
 }
