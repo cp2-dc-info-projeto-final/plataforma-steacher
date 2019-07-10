@@ -1,13 +1,13 @@
 const path = require('path');
 const firebase = require('./../../config/firebase');
 
-module.exports = (app)=>{
+module.exports = (app) => {
     var jsDir = path.join(__dirname, '..').replace(/\\/g, '/');
 
 
     //Login 
     app.get('/', (req, resp) => {
-        firebase.auth().onAuthStateChanged(user =>{
+        firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 console.log(user.displayName);
                 console.log(user.email);
@@ -17,21 +17,23 @@ module.exports = (app)=>{
                 console.log(user.uid);
                 console.log(user.providerData);
                 resp.render('home.pug');
+                resp.send();
             } else {
                 resp.render('login.pug', {
                     dir: jsDir
                 });
             }
-          });
+            resp.send();
+        });
     });
 
-    app.post('/login', (req, resp) =>{
+    app.post('/login', (req, resp) => {
         firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.senha)
-            .then(user =>{
+            .then(user => {
                 console.log('Usuário logado!!');
-                resp.status(200).send({email: user.user.email, uid: user.user.uid});
+                resp.status(200).send({ email: user.user.email, uid: user.user.uid });
             })
-            .catch(error =>{
+            .catch(error => {
                 var errorCode = error.code;
                 resp.status(400).send(error.message);
             });
@@ -39,21 +41,34 @@ module.exports = (app)=>{
 
     //Cadastro
 
-    app.get('/cadastro', (req, resp) =>{
+    app.get('/cadastro', (req, resp) => {
         resp.render('cadastro.pug');
+        resp.send();
     })
 
-    app.post('/cadastro', (req, resp) =>{
+    app.post('/cadastro', (req, resp) => {
         firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.senha)
-            .then(user =>{
+            .then(user => {
                 console.log('Usuário cadastrado!!');
                 resp.status(304).redirect('/');
             })
-            .catch(error =>{
+            .catch(error => {
                 var errorCode = error.code;
                 resp.status(400).send(error.message);
             });
-        
+
+    })
+
+    //Desconectar
+
+    app.get('/sign-out', (req, resp) => {
+        firebase.auth().signOut()
+            .then(() => {
+                resp.redirect('/');
+                resp.status(200).send();
+            }).catch(function (error) {
+                resp.status(500).send(error);
+            });
     })
 
 }

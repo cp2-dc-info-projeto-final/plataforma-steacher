@@ -7,7 +7,7 @@ html(lang="pt-br")
         title Home
     body
         include ./default/navbar
-        
-        button(type="submit" action="/sign-out" method="GET") Desconectar
+        form(action = "/sign-out" method="GET")
+            button(type="submit") Desconectar
     
         include ./default/scripts
