@@ -4,7 +4,7 @@ import views from '../../../../public/views/index';
 
 export default class CommonController{
 
-    static routes(){
+    public static routes(){
         return {
             home: '/',
             login: '/login',
@@ -14,19 +14,19 @@ export default class CommonController{
 
     /*----------------Views----------------*/
 
-    get homeView(){
+    public get homeView(){
         return (req: Request, resp: Response) =>{
             resp.render(views.common.home);
         }
     }
 
-    get loginView(){
+    public get loginView(){
         return (req: Request, resp: Response) =>{
             resp.render(views.common.login)
         }
     }
 
-    get cadastroView(){
+    public get cadastroView(){
         return (req: Request, resp: Response) =>{
             resp.render(views.common.cadastro)
         }
@@ -34,13 +34,13 @@ export default class CommonController{
 
     /*----------------Métodos----------------*/
 
-    login(){
+    public login(){
         return (req: Request, resp : Response) =>{
             resp.send('Login')
         }
     }
 
-    cadastro(){
+    public cadastro(){
         return (req: Request, resp : Response) =>{
             resp.send('Cadastro')
         }
