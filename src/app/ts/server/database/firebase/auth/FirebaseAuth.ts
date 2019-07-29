@@ -1,11 +1,9 @@
-import firebase from '../firebase';
+import { auth } from '../firebase';
 
-export default class FirebaseAuth{
+export class FirebaseAuth{
 
-    private _auth = firebase.auth()
-
-    public signUp(){
-
+    public signUp(){   
+        
     }
     
     public signIn(){

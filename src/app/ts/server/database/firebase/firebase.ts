@@ -18,6 +18,19 @@ const config = {
 
 firebase.initializeApp(config);
 
+/*-----------------Funções-----------------*/
+
+function auth(){
+    return firebase.auth();
+}
+
+function storage(){
+    return firebase.storage();
+}
+
 /*----------------Exportação---------------*/
 
 export default firebase;
+
+export { auth, storage };
+

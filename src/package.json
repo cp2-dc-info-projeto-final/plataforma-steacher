@@ -2,7 +2,7 @@
   "name": "steacher-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "entry.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon --watch \"app/ts\" --exec \"ts-node app/ts/server/entry.ts\" -e ts"
@@ -26,11 +26,13 @@
     "express": "^4.17.1",
     "firebase": "^6.3.1",
     "lodash": "^4.17.15",
+    "mysql": "^2.17.1",
     "pug": "^2.0.4"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
     "@types/express": "^4.17.0",
+    "chalk": "^2.4.2",
     "nodemon": "^1.19.1",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.3"
