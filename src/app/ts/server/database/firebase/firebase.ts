@@ -25,7 +25,7 @@ function auth(){
 }
 
 function storage(){
-    return firebase.storage();
+    return firebase.storage()
 }
 
 /*----------------Exportação---------------*/
