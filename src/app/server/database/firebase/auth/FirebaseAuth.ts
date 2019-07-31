@@ -1,6 +1,6 @@
 //Módulos
 
-import { auth } from '../firebase';
+import { auth } from '../connection';
 import { error, success } from '../../../config/colors';
 import { signInErrors, signUpErrors } from './errors/barrel';
 
