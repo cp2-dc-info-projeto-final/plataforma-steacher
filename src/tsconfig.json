@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "outDir": "./app/js",
+    "outDir": "./app/client/js",
     "removeComments": true,
     "strict": true,
     "noEmitOnError": true,
@@ -12,9 +12,6 @@
   },
 
   "include": [
-    "./app/ts/**/*"
-  ],
-  "exclude": [
-    "./app/ts/server/**/*"
+    "./app/client/ts/**/*"
   ]
 }
