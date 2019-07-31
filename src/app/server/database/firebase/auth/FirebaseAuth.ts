@@ -15,11 +15,11 @@ export class FirebaseAuth {
             auth().createUserWithEmailAndPassword(email, password)
                 .then(() => {
                     console.log(success(('Usuário criado com sucesso.')));
-                    resolve(this._result('Usuário criado com sucesso.'));
+                    resolve(this._resultFactory('Usuário criado com sucesso.'));
                 })
                 .catch(err => {
                     console.log(error(err.code));
-                    reject(this._result(signUpErrors(err.code), true));
+                    reject(this._resultFactory(signUpErrors(err.code), true));
                 })
         })
     }
@@ -29,11 +29,11 @@ export class FirebaseAuth {
             auth().signInWithEmailAndPassword(email, password)
             .then(() => {
                 console.log(success(('Login realizado com sucesso.')));
-                resolve(this._result('Login realizado com sucesso.'));
+                resolve(this._resultFactory('Login realizado com sucesso.'));
             })
             .catch(err => {
                 console.log(error(err.code));
-                reject(this._result(signInErrors(err.code), true));
+                reject(this._resultFactory(signInErrors(err.code), true));
             });
         })
         
@@ -44,11 +44,11 @@ export class FirebaseAuth {
             auth().signOut()
             .then(() => {
                 console.log(success('Usuário desconectado com sucesso.'));
-                resolve(this._result('Desconectado da conta com sucesso.'));
+                resolve(this._resultFactory('Desconectado da conta com sucesso.'));
             })
             .catch(err => {
                 console.log(error(err.code));
-                reject(this._result('Não foi possível se desconectar da conta.', true));
+                reject(this._resultFactory('Não foi possível se desconectar da conta.', true));
             })
 
         }) 
@@ -57,7 +57,7 @@ export class FirebaseAuth {
 
     /*----------------Helpers----------------*/
 
-    private _result(message: string, error?: boolean): ErrorMessage {
+    private _resultFactory(message: string, error?: boolean): ErrorMessage {
         let result = {
             error: false,
             message: ''
