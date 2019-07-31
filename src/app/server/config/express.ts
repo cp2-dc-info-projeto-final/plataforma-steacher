@@ -18,9 +18,9 @@ const app: Application = express();
 
 app.set('view engine', 'pug');
 
-app.set('views', path.join(__dirname, '../../../../public/views'));
+app.set('views', path.join(__dirname, '../../../public/views'));
 
-app.use('/css', express.static(path.join(__dirname, '../../../../public/css')));
+app.use('/css', express.static(path.join(__dirname, '../../../public/css')));
 
 app.use('/js', express.static(path.join(__dirname, '../../../js')));
 

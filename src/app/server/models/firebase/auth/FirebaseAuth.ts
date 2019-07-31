@@ -1,16 +1,16 @@
 //Módulos
 
-import { auth } from '../connection';
+import { auth } from '../../../database/firebase/connectionFactory';
 import { error, success } from '../../../config/colors';
 import { signInErrors, signUpErrors } from './errors/barrel';
 
 //Interfaces
 
-import { ErrorMessage } from '../../../models/interfaces/barrel';
+import { FirebaseError } from '../../../models/firebase/interfaces/barrel';
 
 export class FirebaseAuth {
 
-    public signUp(email: string, password: string): Promise<ErrorMessage> {
+    public signUp(email: string, password: string): Promise<FirebaseError> {
         return new Promise((resolve, reject) => {
             auth().createUserWithEmailAndPassword(email, password)
                 .then(() => {
@@ -24,7 +24,7 @@ export class FirebaseAuth {
         })
     }
 
-    public signIn(email: string, password: string): Promise<ErrorMessage> {
+    public signIn(email: string, password: string): Promise<FirebaseError> {
         return new Promise((resolve, reject) =>{
             auth().signInWithEmailAndPassword(email, password)
             .then(() => {
@@ -39,7 +39,7 @@ export class FirebaseAuth {
         
     }
 
-    public signOut(): Promise<ErrorMessage> {
+    public signOut(): Promise<FirebaseError> {
         return new Promise((resolve, reject) =>{
             auth().signOut()
             .then(() => {
@@ -57,8 +57,8 @@ export class FirebaseAuth {
 
     /*----------------Helpers----------------*/
 
-    private _resultFactory(message: string, error?: boolean): ErrorMessage {
-        let result = {
+    private _resultFactory(message: string, error?: boolean): FirebaseError {
+        let result: FirebaseError = {
             error: false,
             message: ''
         };
