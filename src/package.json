@@ -5,7 +5,7 @@
   "main": "entry.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon --watch \"app/ts\" --exec \"ts-node app/ts/server/entry.ts\" -e ts"
+    "server": "nodemon --watch \"app/server\" --exec \"ts-node app/server/entry.ts\" -e ts"
   },
   "repository": {
     "type": "git",

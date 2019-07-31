@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 
-import views from '../../../../public/views/index';
+import views from '../../../public/views/index';
 
 export default class CommonController{
 
