@@ -20,6 +20,8 @@ app.set('view engine', 'pug');
 
 app.set('views', path.join(__dirname, '../../../public/views'));
 
+app.use('/assets', express.static(path.join(__dirname, '../../../public/assets')));
+
 app.use('/css', express.static(path.join(__dirname, '../../../public/css')));
 
 app.use('/js', express.static(path.join(__dirname, '../../../js')));
