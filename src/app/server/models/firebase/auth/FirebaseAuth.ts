@@ -1,6 +1,6 @@
 //Módulos
 
-import { auth } from '../../../database/firebase/connectionFactory';
+import { auth } from '../../../database/firebase/connection';
 import { error, success } from '../../../config/colors';
 import { signInErrors, signUpErrors } from './errors/barrel';
 
