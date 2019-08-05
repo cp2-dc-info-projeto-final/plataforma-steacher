@@ -1,8 +1,7 @@
-interface Aluno{
-    id: number,
-    nome: string,
-    matricula: string,
+import { PessoaBd } from "./barrel";
+
+interface AlunoBd extends PessoaBd{
     turma: number
 }
 
-export default Aluno;
+export default AlunoBd;

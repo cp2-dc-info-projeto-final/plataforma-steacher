@@ -1,8 +1,8 @@
-interface Professor{
-    id: number,
-    nome: string,
-    matricula: string,
+import { PessoaBd } from "./barrel";
+
+
+interface ProfessorBd extends PessoaBd{
     meteria: number
 }
 
-export default Professor;
+export default ProfessorBd;
