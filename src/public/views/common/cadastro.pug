@@ -1,0 +1,48 @@
+doctype
+html(lang="pt-br")
+    
+    head
+        include ../default/head
+        link(rel="stylesheet", href="css/styles/common/cadastro.css")
+
+        title Cadastro
+    body
+        include ../default/navbar
+        
+        div#form.row
+            form(class="col l10 offset-l1" action="/cadastro" method="POST")
+                h1.center Cadastro
+                div.row
+                    div(class="input-field col s6")
+                        input(placeholder="Digite seu nome" name="nome" id="nome" type="text" class="validate")
+                        label(for="nome") Nome
+
+                    div(class="input-field col s6")
+                        input(placeholder="Digite seu sobrenome" name="sobrenome" id="sobrenome" type="text" class="validate")
+                        label(for="sobrenome") Sobrenome
+
+                    div(class="input-field col s6")
+                        input(placeholder="Digite seu e-mail" name="email" id="email" type="email" class="validate")
+                        label(for="email") E-mail
+
+                    div(class="input-field col s6")
+                        input(placeholder="Digite sua senha" name="senha" id="senha" type="password" class="validate")
+                        label(for="senha") Senha
+
+                    div(class="input-field col s6")
+                        input(placeholder="Digite sua matricula" name="matricula" id="matricula" type="text" class="validate")
+                        label(for="senha") Matricula
+                    
+                    div#select(class="input-field col s3 offset-s5")
+                        select.browser-default(name="turma" id="turma")
+                            option(value="" disabled selected) Escolha uma turma
+                            option(value="In301") In301
+                            option(value="In303") In303
+
+                    div(class="input-field col s4 offset-s10")    
+                        button(class="btn waves-effect waves-light deep-purple lighten-1 col s6" type="submit") Enviar
+                            i(class="material-icons right") send
+                
+        //- include ./default/footer
+
+        include ../default/scripts
