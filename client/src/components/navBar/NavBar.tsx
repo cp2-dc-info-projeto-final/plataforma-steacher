@@ -1,6 +1,6 @@
 import React from 'react';
 
-import 'bulma/css/bulma.min.css';
+import '../login/form/node_modules/bulma/css/bulma.min.css';
 
 //REMOVER TOOS OS HREFS
 
