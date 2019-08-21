@@ -41,8 +41,8 @@
       "last 1 safari version"
     ]
   },
-  "resolutions": {
-    "@typescript-eslint/parser": "^1.11.0",
-    "@typescript-eslint/eslint-plugin": "^1.11.0"
-  }
+    "resolutions": {
+      "@typescript-eslint/parser": "^1.11.0",
+      "@typescript-eslint/eslint-plugin": "^1.11.0"  
+    }
 }
