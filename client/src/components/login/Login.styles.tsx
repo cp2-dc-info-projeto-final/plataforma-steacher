@@ -15,8 +15,11 @@ export const Image = styled.img`
 
 export const Title = styled.p`
     text-align: center;
-    font-size: 20pt;
-    margin-top: -0.5rem;
+    font-size: 45pt;
+    font-family: haettenschweiler;
+    text-shadow: 1px 1px 1px black;
+    color: hsl(217, 71%, 53%);
+    margin-top: 10rem;
 `;
 
 export const Input = styled.input`

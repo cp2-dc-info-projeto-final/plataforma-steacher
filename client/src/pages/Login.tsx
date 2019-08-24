@@ -8,7 +8,7 @@ export default function Home() {
     <Background>
       <div className="columns is-mobile">
         <div className="column is-4 is-offset-one-third">
-          <Login />
+          <Login/>
         </div>
       </div>
     </Background>
