@@ -11,7 +11,3 @@ export const Background = styled.div`
     min-width: 100%;
     min-height: 100%;
 `;
-
-export const Texto = styled.h1`
-    color: red
-`;

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Card = styled.div`
     margin-top: 5rem;
     border-radius: 1rem;
+    background-color: #eeeeee;
 `;
 
 export const Image = styled.img`

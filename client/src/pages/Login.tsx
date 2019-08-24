@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from '../components/login/Login';
-import { Background, Texto } from '../App.style';
+import { Background } from '../App.style';
 
 export default function Home() {
 
