@@ -1,13 +1,16 @@
 import React from 'react';
 import Login from '../components/login/Login';
-
+import { Background, Texto } from '../App.style';
 
 export default function Home() {
+
   return (
-    <div className="columns is-mobile">
-      <div className="column is-4 is-offset-one-third">
-        <Login />
+    <Background>
+      <div className="columns is-mobile">
+        <div className="column is-4 is-offset-one-third">
+          <Login />
+        </div>
       </div>
-    </div>
+    </Background>
   );
 }

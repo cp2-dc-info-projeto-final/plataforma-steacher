@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Button } from '../Styles';
+import { Input, Button } from '../Login.styles';
 
 export default function Form() {
     return (
