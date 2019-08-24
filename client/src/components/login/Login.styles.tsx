@@ -37,3 +37,10 @@ export const Button = styled.button`
     margin-left: auto;
     margin-right: auto;
 `;
+
+export const BigButton = styled.button`
+    width: 30rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+`;
