@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const Card = styled.div`
-    margin-top: 5rem;
-    border-radius: 1rem;
-    background-color: #eeeeee;
-`;
-
 export const Image = styled.img`
     width: 6rem;
     display: block;
@@ -15,27 +9,20 @@ export const Image = styled.img`
 
 export const Title = styled.p`
     text-align: center;
-    font-size: 45pt;
+    font-size: 50pt;
     font-family: haettenschweiler;
     text-shadow: 1px 1px 1px black;
     color: hsl(217, 71%, 53%);
-    margin-top: 10rem;
+    margin-top: 8rem;
 `;
 
-export const Input = styled.input`
-    width: 20rem;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-`;
-
-export const Button = styled.button`
-    width: 8.8rem;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+export const TitleSub = styled.p`
+    text-align: center;
+    font-size: 50pt;
+    font-family: haettenschweiler;
+    text-shadow: 1px 1px 1px black;
+    color: hsl(217, 71%, 53%);
+    margin-top: -2rem;
 `;
 
 export const BigButton = styled.button`
