@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "./app/client/js",
+    "removeComments": true,
+    "strict": true,
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true
+  },
+
+  "include": [
+    "./app/client/ts/**/*"
+  ]
+}
