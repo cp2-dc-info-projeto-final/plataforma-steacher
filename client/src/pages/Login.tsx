@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LoginComponent from '../components/home/login/Login';
+import LoginComponent from '../components/auth/login/Login';
 import { Background } from '../App.style';
 
 export default function Login() {

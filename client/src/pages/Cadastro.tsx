@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CadastroComponent from '../components/home/cadastro/Cadastro';
+import CadastroComponent from '../components/auth/cadastro/Cadastro';
 import { Background } from '../App.style';
 
 export default function Cadastro() {
