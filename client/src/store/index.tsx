@@ -6,10 +6,10 @@ import { createStore } from 'redux';
 
 //#region Reducers
 
-import { loginReducers } from './reducers';
+import reducers from './reducers';
 
 //#endregion
 
-const store = createStore(loginReducers);
+const store = createStore(reducers);
 
 export default store;

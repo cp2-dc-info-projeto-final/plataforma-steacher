@@ -6,7 +6,7 @@ import { combineReducers } from "redux";
 
 //#region Reducers
 
-import { emailReducer, passwordReducer } from "./auth/login";
+import { emailReducer, passwordReducer, passwordVisibilityReducer } from "./auth/login";
 
 //#endregion
 
@@ -14,9 +14,18 @@ import { emailReducer, passwordReducer } from "./auth/login";
 
 const loginReducers = combineReducers({
     email: emailReducer,
-    password: passwordReducer
+    password: passwordReducer,
 });
+
+const passwordReducers = combineReducers({
+    visibility: passwordVisibilityReducer
+})
+
+const rootReducers = combineReducers({
+    login: loginReducers,
+    password: passwordReducers
+})
 
 //#endregion
 
-export { loginReducers };
+export default rootReducers;

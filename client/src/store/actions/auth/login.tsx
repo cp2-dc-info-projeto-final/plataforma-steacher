@@ -1,15 +1,23 @@
-const changeEmail = (value: string) =>{
+import { Action } from '../../../models/Store';
+
+const changeEmail = (value: string): Action =>{
     return {
         type: 'CHANGE-EMAIL',
         payload: value
     };
 };
 
-const changePassword = (value: string) =>{
+const changePassword = (value: string): Action =>{
     return {
         type: 'CHANGE-PASSWORD',
         payload: value
     };
 };
 
-export { changeEmail, changePassword };
+const changePasswordVisibility = (): Action =>{
+    return {
+        type: 'CHANGE-PASSWORD-VISIBILITY'
+    }
+}
+
+export { changeEmail, changePassword, changePasswordVisibility };

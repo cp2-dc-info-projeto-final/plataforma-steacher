@@ -1,6 +1,7 @@
 //#region Npm
 
 import React from 'react';
+import { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -8,35 +9,42 @@ import { useSelector, useDispatch } from 'react-redux';
 
 //#region Actions
 
-import { changeEmail, changePassword } from '../../../../store/actions/auth/login';
+import { changeEmail, changePassword } from '../../../store/actions/auth/login';
 
 //#endregion
 
 //#region Functions
 
-import { signIn } from '../../../../helpers/database/firebase/auth';
+import { signIn } from '../../../helpers/database/firebase/auth';
 
 //#endregion
 
 //#region Interfaces
 
-import { State } from '../../../../models/Store';
+import { State } from '../../../models/Store';
+
+//#endregion
+
+//#region Components
+
+
 
 //#endregion
 
 //#region Styles
 
-import { Input, Button } from '../../Home.styles';
+
 
 //#endregion
 
 export default function Form() {
+
     const dispatch = useDispatch();
 
     //#region States
 
-    const email = useSelector((state: State) => state.email);
-    const password = useSelector((state: State) => state.password);
+    const email = useSelector((state: State) => state.login.email);
+    const password = useSelector((state: State) => state.login.password);
 
     //#endregion
 
@@ -44,6 +52,7 @@ export default function Form() {
 
     const onChangeEmail = (event: any): void => {
         dispatch(changeEmail(event.target.value));
+        console.log(email)
     }
 
     const onChangePassword = (event: any): void => {
@@ -66,11 +75,7 @@ export default function Form() {
     //#region XML
 
     return (
-        <form>
-            <Input className="input is-rounded inputs" type="text" placeholder="E-mail" name="name" value={email} onChange={onChangeEmail} />
-            <Input className="input is-rounded inputs" type="password" placeholder="Senha" name="senha" value={password} onChange={onChangePassword} />
-            <Button className="button is-link is-rounded" type='submit' onClick={onClickLogin}>Entrar</Button>
-        </form>
+        <div></div>
     );
 
     //#endregion

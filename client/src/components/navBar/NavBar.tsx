@@ -1,17 +1,50 @@
+//#region Npm
+
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import 'bulma/css/bulma.min.css';
+//#endregion
 
-//REMOVER TOOS OS HREFS
+//#region Functions
 
-export default function NavBar() {
+
+
+//#endregion
+
+//#region Interfaces
+
+
+
+//#endregion
+
+//#region Components
+
+
+
+//#endregion
+
+//#region Propriedades
+
+type Props = {
+    titulo: string,
+    style?: any;
+    styleTitulo?: any
+}
+
+//#endregion
+
+export default function NavBar(props: Props) {
+    const { titulo, style, styleTitulo } = props;
+
+    //#region XML
+
     return (
-        <nav className="navbar is-black level" role="navigation" aria-label="main navigation">
-            <div className="navbar-brand level-item has-text-centered" style={{maxHeight: '4rem', backgroundColor: '#880e4f'}}>
-                <a href="/">
-                    <img src={process.env.PUBLIC_URL + 'assets/logo.png'} alt="Steacher logo" width="85" style={{maxHeight: '3.5rem'}}/>
-                </a>
+        <nav className="blue-grey darken-2" role="navigation" style={style ? style : {}}>
+            <div className="nav-wrapper">
+                <Link className="brand-logo center" to={'/'} style={styleTitulo ? styleTitulo : {}}>{titulo}</Link>
             </div>
         </nav>
     );
-}
+
+    //#endregion
+};

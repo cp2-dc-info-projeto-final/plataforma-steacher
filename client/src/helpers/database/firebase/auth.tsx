@@ -6,7 +6,7 @@ import axios from 'axios';
 
 //#region Url
 
-const serverUrl = 'https://dashboard.heroku.com/apps/steacher-server/';
+// const serverUrl = 'https://dashboard.heroku.com/apps/steacher-server/';
 const testUrl = 'http://localhost:8000/';
 
 //#endregion

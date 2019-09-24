@@ -1,9 +1,18 @@
-export interface Action{
-    type: string,
-    payload?: any
+interface LoginState{
+    email: string,
+    password: string,
+}
+
+interface PasswordState{
+    visibility: boolean
 }
 
 export interface State{
-    email: string,
-    password: string
+    login: LoginState,
+    password: PasswordState
+}
+
+export interface Action{
+    type: string,
+    payload?: any
 }
