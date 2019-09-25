@@ -14,10 +14,11 @@ const changePassword = (value: string): Action =>{
     };
 };
 
-const changePasswordVisibility = (): Action =>{
+const changeRedirect = (value: boolean): Action =>{
     return {
-        type: 'CHANGE-PASSWORD-VISIBILITY'
-    }
-}
+        type: 'CHANGE-REDIRECT',
+        payload: value
+    };
+};
 
-export { changeEmail, changePassword, changePasswordVisibility };
+export { changeEmail, changePassword, changeRedirect };

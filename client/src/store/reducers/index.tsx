@@ -6,7 +6,9 @@ import { combineReducers } from "redux";
 
 //#region Reducers
 
-import { emailReducer, passwordReducer, passwordVisibilityReducer } from "./auth/login";
+import { emailReducer, passwordReducer } from "./auth/login";
+import { nameReducer, subNameReducer, emailReducerC, confirmEmailReducer, confirmPasswordReducer, registrationReducer, accountTypeReducer, passwordReducerC } from "./auth/cadastro";
+import { redirectReducer } from "./auth/common";
 
 //#endregion
 
@@ -17,13 +19,25 @@ const loginReducers = combineReducers({
     password: passwordReducer,
 });
 
-const passwordReducers = combineReducers({
-    visibility: passwordVisibilityReducer
+const cadastroReducers = combineReducers({
+    name: nameReducer,
+    subname: subNameReducer,
+    registration: registrationReducer,
+    accountType: accountTypeReducer,
+    email: emailReducerC,
+    emailConfirm: confirmEmailReducer,
+    password: passwordReducerC,
+    passwordConfirm: confirmPasswordReducer
+})
+
+const authReducers = combineReducers({
+    redirect: redirectReducer
 })
 
 const rootReducers = combineReducers({
     login: loginReducers,
-    password: passwordReducers
+    cadastro: cadastroReducers,
+    auth: authReducers
 })
 
 //#endregion
