@@ -41,7 +41,9 @@ export default function NavBar(props: Props) {
     return (
         <nav className="blue-grey darken-2" role="navigation" style={style ? style : {}}>
             <div className="nav-wrapper">
-                <Link className="brand-logo center" to={'/'} style={styleTitulo ? styleTitulo : {}}>{titulo}</Link>
+                <Link className="brand-logo center" to={'/'} style={styleTitulo ? styleTitulo : {}}>{
+                    titulo ? titulo : <img style={{width: "33%"}} src={process.env.PUBLIC_URL + '/assets/logo.png'}></img>
+                }</Link>
             </div>
         </nav>
     );
