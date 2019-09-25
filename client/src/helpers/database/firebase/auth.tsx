@@ -4,19 +4,22 @@ import axios from 'axios';
 
 //#endregion
 
-//#region Url
+//#region Paths
 
-// const serverUrl = 'https://dashboard.heroku.com/apps/steacher-server/';
-const testUrl = 'http://localhost:8000/';
+import { localServerUrl, serverUrl } from '../../../global/Paths';
 
 //#endregion
 
 //#region Functions
 
+const signUp = (email: string, password: string) => {
+    return axios.post(localServerUrl + 'signUp', { email: email, password: password });
+}
+
 const signIn = (email: string, password: string) => {
-    return axios.post(testUrl + 'signIn', { email: email, password: password });
+    return axios.post(localServerUrl + 'signIn', { email: email, password: password });
 }
 
 //#endregion
 
-export { signIn };
+export { signIn, signUp };
