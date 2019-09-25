@@ -8,7 +8,7 @@ import { combineReducers } from "redux";
 
 import { emailReducer, passwordReducer } from "./auth/login";
 import { nameReducer, subNameReducer, emailReducerC, confirmEmailReducer, confirmPasswordReducer, registrationReducer, accountTypeReducer, passwordReducerC } from "./auth/cadastro";
-import { redirectReducer } from "./auth/common";
+import { redirectReducer, passwordRecoverReducer } from "./auth/common";
 
 //#endregion
 
@@ -31,7 +31,8 @@ const cadastroReducers = combineReducers({
 })
 
 const authReducers = combineReducers({
-    redirect: redirectReducer
+    redirect: redirectReducer,
+    passwordRecover: passwordRecoverReducer
 })
 
 const rootReducers = combineReducers({

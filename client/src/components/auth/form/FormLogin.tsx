@@ -57,6 +57,7 @@ export default function FormLogin() {
 
     const onChangeRedirect = (value: boolean): void => {
         dispatch(changeRedirect(value));
+        dispatch(changeRedirect(false));
     }
 
     //#endregion
@@ -70,7 +71,7 @@ export default function FormLogin() {
                 console.log(result);
                 onChangeRedirect(true)
             })
-            .catch(error => console.log(error.response.data))
+            .catch(error => console.log(error))
     }
 
     //#endregion
@@ -79,7 +80,7 @@ export default function FormLogin() {
 
     return (
         <div>
-            {redirect ? <Redirect to="/cadastro"/> : <></> }
+            {redirect ? <Redirect to="/home"/> : <></> }
         <form>
             <div className="row" style={{ marginBottom: "0%" }}>
                 <div className="input-field col s12 m12 l12">
@@ -95,7 +96,7 @@ export default function FormLogin() {
             </div>
             <div className="row" style={{ marginTop: "-10%" }}>
                 <div className="col offset-s4 offset-m4 offset-l6 s8 m8 l6">
-                    <Link to={'/'}><p>Esqueceu sua senha?</p></Link>
+                    <Link to={'/passwordRecover'}><p>Esqueceu sua senha?</p></Link>
                 </div>
             </div>
             <div className="row" style={{ marginTop: "4%", marginBottom: "-2%" }}>

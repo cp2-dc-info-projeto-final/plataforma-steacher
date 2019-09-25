@@ -49,7 +49,7 @@ export default function Cadastro(props: Props) {
   return (
     <Background>
       <div className="row">
-        <NavBar titulo="" />
+        <NavBar titulo="" link="/cadastro"/>
       </div>
       <div className="row">
         <div className="col offset-m2 offset-l2 s12 m8 l8" style={{marginTop:"-3%"}}>

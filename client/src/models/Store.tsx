@@ -15,7 +15,8 @@ interface CadastroState{
 }
 
 interface AuthState{
-    redirect: boolean
+    redirect: boolean,
+    passwordRecover: string
 }
 
 export interface State{

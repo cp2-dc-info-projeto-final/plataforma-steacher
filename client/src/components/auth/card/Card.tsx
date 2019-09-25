@@ -42,7 +42,7 @@ export default function Card(props: Props) {
 
     return (
         <div className="container" style={(form == 'cadastro') ? {} : {width: "50%", marginTop: "13%"}}>
-            <NavBar titulo={(form == 'cadastro') ? 'Cadastro' : 'Login'} style={{ marginTop: "8%", marginBottom: "0%", borderRadius: "100% 100% 0% 0%" }} styleTitulo={{ paddingBottom: "20%" }} />
+            <NavBar titulo={(form == 'cadastro') ? 'Cadastro' : 'Login'} style={{ marginTop: "8%", marginBottom: "0%", borderRadius: "100% 100% 0% 0%" }} styleTitulo={{ paddingBottom: "20%" }} link={(form == 'cadastro') ? '/cadastro' : '/'}/>
             <div className="card grey lighten-2  hoverable" style={{ marginTop: "0%", borderTopLeftRadius: "0%", borderTopRightRadius: "0%" }}>
                 {(form == 'cadastro') ? <FormCadastro /> : <FormLogin />}
             </div>

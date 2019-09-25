@@ -20,6 +20,14 @@ const signIn = (email: string, password: string) => {
     return axios.post(localServerUrl + 'signIn', { email: email, password: password });
 }
 
+const signOut = () =>{
+    return axios.post(localServerUrl + 'signOut');
+}
+
+const passwordRecover = (email: string) =>{
+    return axios.post(localServerUrl + 'passwordRecover', {email: email});
+}
+
 //#endregion
 
-export { signIn, signUp };
+export { signIn, signUp, signOut, passwordRecover };

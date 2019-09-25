@@ -21,4 +21,11 @@ const changeRedirect = (value: boolean): Action =>{
     };
 };
 
-export { changeEmail, changePassword, changeRedirect };
+const changePasswordRecover = (value: string): Action =>{
+    return {
+        type: 'CHANGE-PASSWORD-RECOVER',
+        payload: value
+    };
+};
+
+export { changeEmail, changePassword, changeRedirect, changePasswordRecover };

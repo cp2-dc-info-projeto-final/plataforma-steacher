@@ -29,8 +29,9 @@ import RadioButton from '../inputs/RadioButton';
 import SendButton from '../inputs/SendButton';
 import { State } from '../../../models/Store';
 import { changeEmailConfirm, changePasswordConfirm, changeName, changeSubName, changeRegistration, changeAccountType } from '../../../store/actions/auth/cadastro';
-import { changePassword, changeEmail } from '../../../store/actions/auth/common';
+import { changePassword, changeEmail, changeRedirect } from '../../../store/actions/auth/common';
 import { signUp } from '../../../helpers/database/firebase/auth';
+import { Redirect } from 'react-router';
 
 //#endregion
 
@@ -56,6 +57,7 @@ export default function FormCadastro(props: Props) {
   const emailConfirm = useSelector((state: State) => state.cadastro.emailConfirm);
   const password = useSelector((state: State) => state.cadastro.password);
   const passwordConfirm = useSelector((state: State) => state.cadastro.passwordConfirm);
+  const redirect = useSelector((state: State) => state.auth.redirect);
 
   //#endregion
 
@@ -64,7 +66,7 @@ export default function FormCadastro(props: Props) {
   const onChangeName = (event: any): void => {
     dispatch(changeName(event.target.value));
   }
-  
+
   const onChangeSubName = (event: any): void => {
     dispatch(changeSubName(event.target.value));
   }
@@ -93,15 +95,22 @@ export default function FormCadastro(props: Props) {
     dispatch(changePasswordConfirm(event.target.value));
   }
 
+  const onChangeRedirect = (value: boolean): void => {
+    dispatch(changeRedirect(value));
+  }
+
   //#endregion
 
   //#region OnClicks
 
-  const onClickSendButton = (event: any): void =>{
+  const onClickSendButton = (event: any): void => {
     event.preventDefault();
     signUp(email, password)
-        .then(result => console.log(result))
-        .catch(error => console.log(error.response.data));
+      .then(result => {
+        console.log(result)
+        onChangeRedirect(true);
+      })
+      .catch(error => console.log(error.response.data));
   }
 
   //#endregion
@@ -109,46 +118,49 @@ export default function FormCadastro(props: Props) {
   //#region XML
 
   return (
-    <form>
-      <div className="row" style={{ marginBottom: "0%" }}>
-        <div className="input-field col s6 m6">
-          <Input id="name" type="text" label="Nome" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={name} onChange={onChangeName}/>
+    <div>
+      {redirect ? <Redirect to="/home"/> : <></> }
+      <form>
+        <div className="row" style={{ marginBottom: "0%" }}>
+          <div className="input-field col s6 m6">
+            <Input id="name" type="text" label="Nome" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={name} onChange={onChangeName} />
+          </div>
+          <div className="input-field col s6 m6">
+            <Input id="sobrenome" type="text" label="Sobrenome" style={{ marginLeft: "10%", width: "70%" }} value={subName} onChange={onChangeSubName} />
+          </div>
         </div>
-        <div className="input-field col s6 m6">
-          <Input id="sobrenome" type="text" label="Sobrenome" style={{ marginLeft: "10%", width: "70%" }} value={subName} onChange={onChangeSubName}/>
+        <div className="row" style={{ marginTop: "-10%" }}>
+          <div className="input-field col s6">
+            <Input id="email" type="email" label="E-mail" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={email} onChange={onChangeEmail} />
+          </div>
+          <div className="input-field col s6">
+            <Input id="cEmail" type="email" label="Confirmação e-mail" style={{ marginLeft: "11%", width: "70%" }} value={emailConfirm} onChange={onChangeEmailConfirm} />
+          </div>
         </div>
-      </div>
-      <div className="row" style={{ marginTop: "-10%" }}>
-        <div className="input-field col s6">
-          <Input id="email" type="email" label="E-mail" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={email} onChange={onChangeEmail}/>
+        <div className="row" style={{ marginTop: "-10%" }}>
+          <div className="input-field col s6">
+            <Input id="senha" type="password" label="Senha" style={{ marginLeft: "11%", width: "70%" }} value={password} onChange={onChangePassword} />
+          </div>
+          <div className="input-field col s6">
+            <Input id="cSenha" type="password" label="Confirmação senha" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={passwordConfirm} onChange={onChangePasswordConfirm} />
+          </div>
         </div>
-        <div className="input-field col s6">
-          <Input id="cEmail" type="email" label="Confirmação e-mail" style={{ marginLeft: "11%", width: "70%" }} value={emailConfirm} onChange={onChangeEmailConfirm}/>
+        <div className="row" style={{ marginTop: "-10%" }}>
+          <div className="input-field col s6">
+            <Input id="matricula" type="text" label="Matricula" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={registration} onChange={onChangeRegistration} />
+          </div>
+          <div className="input-field col s6">
+            <RadioButton name="turma" label={['Aluno', 'Professor']} value={accountType} onChange={onChangeAccountType} />
+          </div>
         </div>
-      </div>
-      <div className="row" style={{ marginTop: "-10%" }}>
-        <div className="input-field col s6">
-          <Input id="senha" type="password" label="Senha" style={{ marginLeft: "11%", width: "70%" }} value={password} onChange={onChangePassword}/>
+        <div className="row" style={{ marginTop: "-10%", marginBottom: "-2%" }}>
+          <div className="center col s12">
+            <SendButton label="Enviar" width="30%" onClick={onClickSendButton} />
+          </div>
         </div>
-        <div className="input-field col s6">
-          <Input id="cSenha" type="password" label="Confirmação senha" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={passwordConfirm} onChange={onChangePasswordConfirm}/>
-        </div>
-      </div>
-      <div className="row" style={{ marginTop: "-10%" }}>
-        <div className="input-field col s6">
-          <Input id="matricula" type="text" label="Matricula" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={registration} onChange={onChangeRegistration}/>
-        </div>
-        <div className="input-field col s6">
-          <RadioButton name="turma" label={['Aluno', 'Professor']} value={accountType} onChange={onChangeAccountType} />
-        </div>
-      </div>
-      <div className="row" style={{ marginTop: "-10%", marginBottom: "-2%" }}>
-        <div className="center col s12">
-          <SendButton label="Enviar" width="30%" onClick={onClickSendButton}/>
-        </div>
-      </div>
-      <br />
-    </form>
+        <br />
+      </form>
+    </div>
   );
 
   //#endregion

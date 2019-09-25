@@ -11,6 +11,10 @@ const redirectReducer = (state: boolean = false, action: Action) => {
     return attaches(state, action.type, 'CHANGE-REDIRECT', action.payload);
 };
 
+const passwordRecoverReducer = (state: string = '', action: Action) => {
+    return attaches(state, action.type, 'CHANGE-PASSWORD-RECOVER', action.payload);
+};
+
 //#endregion
 
-export { redirectReducer };
+export { redirectReducer, passwordRecoverReducer };
