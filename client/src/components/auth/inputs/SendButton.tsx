@@ -26,17 +26,21 @@ import React from 'react';
 //#region Propriedades
 
 type Props = {
-
+    onClick?: any,
+    label: string,
+    width: string
 }
 
 //#endregion
 
 export default function SendButton(props: Props) {
+    const { onClick ,label, width } = props;
+
     //#region XML
 
     return (
-        <button className="btn blue-grey darken-2 waves-effect waves-light" type="submit" name="action" style={{width: "20%"}}>
-            Enviar
+        <button onClick={onClick} className="btn blue-grey darken-2 waves-effect waves-light" type="submit" name="action" style={{ width: width }}>
+            {label}
         </button>
     );
 

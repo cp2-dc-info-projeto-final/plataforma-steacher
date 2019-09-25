@@ -17,8 +17,9 @@ import React from 'react';
 
 //#region Components
 
-import Form from '../form/FormCadastro';
+import FormCadastro from '../form/FormCadastro';
 import NavBar from '../../navBar/NavBar';
+import FormLogin from '../form/FormLogin';
 
 //#endregion
 
@@ -37,15 +38,13 @@ type Props = {
 export default function Card(props: Props) {
     const { form } = props;
 
-    const pub = process.env.PUBLIC_URL;
-
     //#region XML
 
     return (
-        <div className="container">
-            <NavBar titulo="Cadastro" style={{marginTop: "8%", marginBottom: "-1%", borderRadius: "100% 100% 0% 0%"}} styleTitulo={{paddingBottom: "20%"}}/>
-            <div className="card grey lighten-2">
-                <Form />
+        <div className="container" style={(form == 'cadastro') ? {} : {width: "50%", marginTop: "13%"}}>
+            <NavBar titulo={(form == 'cadastro') ? 'Cadastro' : 'Login'} style={{ marginTop: "8%", marginBottom: "0%", borderRadius: "100% 100% 0% 0%" }} styleTitulo={{ paddingBottom: "20%" }} />
+            <div className="card grey lighten-2  hoverable" style={{ marginTop: "0%", borderTopLeftRadius: "0%", borderTopRightRadius: "0%" }}>
+                {(form == 'cadastro') ? <FormCadastro /> : <FormLogin />}
             </div>
         </div>
     );
