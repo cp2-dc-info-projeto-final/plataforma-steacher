@@ -12,6 +12,8 @@
     "@types/react-router-dom": "^4.3.4",
     "@types/styled-components": "^4.1.18",
     "axios": "^0.19.0",
+    "gulp": "^4.0.2",
+    "gulp-imagemin": "^6.1.0",
     "materialize-css": "^1.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -26,7 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "gulp": "gulp"
   },
   "eslintConfig": {
     "extends": "react-app",
