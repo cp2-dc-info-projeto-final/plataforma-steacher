@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import 'materialize-css/dist/css//materialize.min.css';
+import 'materialize-css/dist/css/materialize.min.css';
 
 //#endregion
 
@@ -48,8 +48,14 @@ export default function Cadastro(props: Props) {
 
   return (
     <Background>
-      <NavBar titulo="Steacher"/>
-      <Card form="cadastro" />
+      <div className="row">
+        <NavBar titulo="" />
+      </div>
+      <div className="row">
+        <div className="col offset-m2 offset-l2 s12 m8 l8" style={{marginTop:"-3%"}}>
+          <Card form="cadastro" />
+        </div>
+      </div>
     </Background>
   );
 }
