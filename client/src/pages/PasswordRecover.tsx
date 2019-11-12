@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 //#region Actions
 
 import { alterMessage } from '../store/actions/notifications/notifications';
+import { changeLoading } from '../store/actions/loading/loading';
 
 //#endregion
 
@@ -43,9 +44,9 @@ type Props = {
 
 //#endregion
 
-export default function PasswordRecover(props: Props) {    
+export default function PasswordRecover(props: Props) {
     const dispatch = useDispatch();
-    
+
     //#region States
 
     const [email = '', setEmail] = useState();
@@ -81,17 +82,26 @@ export default function PasswordRecover(props: Props) {
 
     const onClickSendButton = (event: any): void => {
         event.preventDefault();
+        dispatch(changeLoading((true)));
+
         passwordRecover(email)
             .then(result => {
                 console.log(result);
 
-                toast.dismiss();
-                dispatch(alterMessage(result.data));
+                setTimeout(() => {
+                    dispatch(changeLoading((false)));
 
-                onChangeRedirect(true);
+                    toast.dismiss();
+                    dispatch(alterMessage(result.data));
+
+                    onChangeRedirect(true);
+                }, 400)
             })
             .catch(error => {
-                notifyError(error.response.data);
+                setTimeout(() => {
+                    dispatch(changeLoading((false)));
+                    notifyError(error.response.data);
+                }, 400)
             })
     }
 
@@ -101,12 +111,12 @@ export default function PasswordRecover(props: Props) {
 
     return (
         <Background>
-            {redirect ?  <Redirect to="/" /> : <></>}
+            {redirect ? <Redirect to="/" /> : <></>}
 
             <Loading></Loading>
 
             <div className="row">
-                <NavBar titulo=""/>
+                <NavBar titulo="" />
             </div>
             <div className="row">
                 <div className="col offset-m2 offset-l2 s12 m8 l8" style={{ marginTop: "-3%" }}>
