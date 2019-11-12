@@ -2,12 +2,12 @@
 
 import React from 'react';
 
-import 'materialize-css/dist/css/materialize.min.css';
-import { signOut } from '../helpers/database/firebase/auth';
-import { Redirect } from 'react-router';
-import { changeRedirect } from '../store/actions/auth/common';
-import { useDispatch, useSelector } from 'react-redux';
-import { State } from '../models/Store';
+// import 'materialize-css/dist/css/materialize.min.css';
+// import { signOut } from '../helpers/database/firebase/auth';
+// import { Redirect } from 'react-router';
+// import { changeRedirect } from '../store/actions/auth/common';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { State } from '../models/Store';
 
 //#endregion
 
@@ -38,28 +38,28 @@ type Props = {
 //#endregion
 
 export default function Home(props: Props) {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
-    const redirect = useSelector((state: State) => state.auth.redirect);
+    // const redirect = useSelector((state: State) => state.auth.redirect);
 
-    const onChangeRedirect = (value: boolean): void => {
-        dispatch(changeRedirect(value));
-    }
+    // const onChangeRedirect = (value: boolean): void => {
+    //     dispatch(changeRedirect(value));
+    // }
 
-    const onClickImage = (event: any) =>{
-        signOut()
-            .then(result =>{
-                console.log(result);
-                onChangeRedirect(true);
-            })
-            .catch(error => console.log(error));
-    }
+    // const onClickImage = (event: any) =>{
+    //     signOut()
+    //         .then(result =>{
+    //             console.log(result);
+    //             onChangeRedirect(true);
+    //         })
+    //         .catch(error => console.log(error));
+    // }
 
-    //#region XML
+    // //#region XML
 
     return (
         <div>
-            {redirect ? <Redirect to="/"/> : <></> }
+            {/* {redirect ? <Redirect to="/"/> : <></> }
             <div className="row">
                 <div className="col s12">
                     <div className="col offset-s3 s6 center">
@@ -67,7 +67,7 @@ export default function Home(props: Props) {
                         <h1 style={{ textAlign: "center", marginBottom:"-1%" }}>R.I.P Brownie</h1>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 

@@ -1,37 +1,29 @@
 //#region Npm
 
-import React from 'react';
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { Redirect } from 'react-router';
+import { useDispatch } from 'react-redux';
 
 //#endregion
 
 //#region Actions
 
-import { useSelector, useDispatch } from 'react-redux';
+import { alterMessage } from '../../../store/actions/notifications/notifications';
+import { changeLoading } from '../../../store/actions/loading/loading';
 
 //#endregion
 
 //#region Functions
 
-
-
-//#endregion
-
-//#region Interfaces
-
-
+import { signUp } from '../../../helpers/database/firebase/auth';
 
 //#endregion
 
 //#region Components
 
 import Input from '../inputs/TextInput';
-import RadioButton from '../inputs/RadioButton';
 import SendButton from '../inputs/SendButton';
-import { State } from '../../../models/Store';
-import { changeEmailConfirm, changePasswordConfirm, changeName, changeSubName, changeRegistration, changeAccountType } from '../../../store/actions/auth/cadastro';
-import { changePassword, changeEmail, changeRedirect } from '../../../store/actions/auth/common';
-import { signUp } from '../../../helpers/database/firebase/auth';
-import { Redirect } from 'react-router';
 
 //#endregion
 
@@ -39,78 +31,112 @@ import { Redirect } from 'react-router';
 
 type Props = {
 
-}
+};
 
 //#endregion
-
 
 export default function FormCadastro(props: Props) {
   const dispatch = useDispatch();
 
   //#region States
 
-  const name = useSelector((state: State) => state.cadastro.name);
-  const subName = useSelector((state: State) => state.cadastro.subname);
-  const registration = useSelector((state: State) => state.cadastro.registration);
-  const accountType = useSelector((state: State) => state.cadastro.accountType);
-  const email = useSelector((state: State) => state.cadastro.email);
-  const emailConfirm = useSelector((state: State) => state.cadastro.emailConfirm);
-  const password = useSelector((state: State) => state.cadastro.password);
-  const passwordConfirm = useSelector((state: State) => state.cadastro.passwordConfirm);
-  const redirect = useSelector((state: State) => state.auth.redirect);
+  const [name = '', setName] = useState();
+  const [subName = '', setSubName] = useState();
+  const [registration = '', setRegistration] = useState();
+  const [email = '', setEmail] = useState();
+  const [emailConfirm = '', setEmailConfirm] = useState();
+  const [password = '', setPassword] = useState();
+  const [passwordConfirm = '', setPasswordConfirm] = useState();
+  const [redirect = false, setRedirect] = useState();
+
+  //#endregion
+
+  //#region Toasts
+
+  toast.configure();
+
+  const notifyError = (message: string) => {
+    toast.error(message, {
+      position: toast.POSITION.TOP_RIGHT
+    });
+  }
+
+  // const notifySuccess = (message: string) => {
+  //   toast.success(message, {
+  //     position: toast.POSITION.TOP_RIGHT
+  //   });
+  // }
 
   //#endregion
 
   //#region OnChanges
 
-  const onChangeName = (event: any): void => {
-    dispatch(changeName(event.target.value));
+  const changeName = (event: any): void => {
+    setName(event.target.value);
   }
 
-  const onChangeSubName = (event: any): void => {
-    dispatch(changeSubName(event.target.value));
+  const changeSubName = (event: any): void => {
+    setSubName(event.target.value);
   }
 
-  const onChangeRegistration = (event: any): void => {
-    dispatch(changeRegistration(event.target.value));
+  const changeRegistration = (event: any): void => {
+    setRegistration(event.target.value);
   }
 
-  const onChangeAccountType = (event: any): void => {
-    dispatch(changeAccountType(event.target.value));
+  const changeEmail = (event: any): void => {
+    setEmail(event.target.value);
   }
 
-  const onChangeEmail = (event: any): void => {
-    dispatch(changeEmail(event.target.value));
+  const changeEmailConfirm = (event: any): void => {
+    setEmailConfirm(event.target.value);
   }
 
-  const onChangeEmailConfirm = (event: any): void => {
-    dispatch(changeEmailConfirm(event.target.value));
+  const changePassword = (event: any): void => {
+    setPassword(event.target.value);
   }
 
-  const onChangePassword = (event: any): void => {
-    dispatch(changePassword(event.target.value));
+  const changePasswordConfirm = (event: any): void => {
+    setPasswordConfirm(event.target.value);
   }
 
-  const onChangePasswordConfirm = (event: any): void => {
-    dispatch(changePasswordConfirm(event.target.value));
-  }
-
-  const onChangeRedirect = (value: boolean): void => {
-    dispatch(changeRedirect(value));
+  const changeRedirect = (value: boolean): void => {
+    setRedirect(value);
   }
 
   //#endregion
 
   //#region OnClicks
 
-  const onClickSendButton = (event: any): void => {
+  const send = (event: any): void => {
     event.preventDefault();
-    signUp(email, password)
-      .then(result => {
-        console.log(result)
-        onChangeRedirect(true);
+    dispatch(changeLoading(true));
+
+    const data = {
+      name: name,
+      subName: subName,
+      email: email,
+      emailConfirm: emailConfirm,
+      password: password,
+      passwordConfirm: passwordConfirm,
+      registration: registration,
+    };
+
+    signUp(data)
+      .then(() => {
+        setTimeout(() => {
+          dispatch(changeLoading(false));
+          toast.dismiss();
+          dispatch(alterMessage('Usuário criado com sucesso.'))
+          changeRedirect(true);
+        }, 400);
       })
-      .catch(error => console.log(error.response.data));
+      .catch(error => {
+        setTimeout(() => {
+          dispatch(changeLoading(false));
+          notifyError(error.response.data);
+        }, 400)
+      })
+
   }
 
   //#endregion
@@ -119,47 +145,46 @@ export default function FormCadastro(props: Props) {
 
   return (
     <div>
-      {redirect ? <Redirect to="/home"/> : <></> }
+      {redirect ? <Redirect to="/home" /> : <></>}
+
       <form>
         <div className="row" style={{ marginBottom: "0%" }}>
           <div className="input-field col s6 m6">
-            <Input id="name" type="text" label="Nome" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={name} onChange={onChangeName} />
+            <Input id="name" type="text" label="Nome" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={name} onChange={changeName} />
           </div>
           <div className="input-field col s6 m6">
-            <Input id="sobrenome" type="text" label="Sobrenome" style={{ marginLeft: "10%", width: "70%" }} value={subName} onChange={onChangeSubName} />
+            <Input id="sobrenome" type="text" label="Sobrenome" style={{ marginLeft: "10%", width: "70%" }} value={subName} onChange={changeSubName} />
           </div>
         </div>
         <div className="row" style={{ marginTop: "-10%" }}>
           <div className="input-field col s6">
-            <Input id="email" type="email" label="E-mail" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={email} onChange={onChangeEmail} />
+            <Input id="email" type="email" label="E-mail" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={email} onChange={changeEmail} />
           </div>
           <div className="input-field col s6">
-            <Input id="cEmail" type="email" label="Confirmação e-mail" style={{ marginLeft: "11%", width: "70%" }} value={emailConfirm} onChange={onChangeEmailConfirm} />
-          </div>
-        </div>
-        <div className="row" style={{ marginTop: "-10%" }}>
-          <div className="input-field col s6">
-            <Input id="senha" type="password" label="Senha" style={{ marginLeft: "11%", width: "70%" }} value={password} onChange={onChangePassword} />
-          </div>
-          <div className="input-field col s6">
-            <Input id="cSenha" type="password" label="Confirmação senha" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={passwordConfirm} onChange={onChangePasswordConfirm} />
+            <Input id="cEmail" type="email" label="Confirmação e-mail" style={{ marginLeft: "11%", width: "70%" }} value={emailConfirm} onChange={changeEmailConfirm} />
           </div>
         </div>
         <div className="row" style={{ marginTop: "-10%" }}>
           <div className="input-field col s6">
-            <Input id="matricula" type="text" label="Matricula" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={registration} onChange={onChangeRegistration} />
+            <Input id="senha" type="password" label="Senha" style={{ marginLeft: "11%", width: "70%" }} value={password} onChange={changePassword} />
           </div>
           <div className="input-field col s6">
-            <RadioButton name="turma" label={['Aluno', 'Professor']} value={accountType} onChange={onChangeAccountType} />
+            <Input id="cSenha" type="password" label="Confirmação senha" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={passwordConfirm} onChange={changePasswordConfirm} />
+          </div>
+        </div>
+        <div className="row" style={{ marginTop: "-10%" }}>
+          <div className="input-field col s6">
+            <Input id="matricula" type="text" label="Matrícula" style={{ marginLeft: "10%", marginRight: "10%", width: "70%" }} value={registration} onChange={changeRegistration} />
           </div>
         </div>
         <div className="row" style={{ marginTop: "-10%", marginBottom: "-2%" }}>
           <div className="center col s12">
-            <SendButton label="Enviar" width="30%" onClick={onClickSendButton} />
+            <SendButton label="Enviar" width="30%" onClick={send} />
           </div>
         </div>
         <br />
       </form>
+
     </div>
   );
 

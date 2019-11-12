@@ -1,12 +1,21 @@
 //#region Npm
 
-import React from 'react';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+
+//#endregion
+
+//#region Actions
+
+import { alterMessage } from '../store/actions/notifications/notifications';
 
 //#endregion
 
 //#region Functions
 
-
+import { passwordRecover } from '../helpers/database/firebase/auth';
 
 //#endregion
 
@@ -22,12 +31,7 @@ import { Background } from '../App.style';
 import NavBar from '../components/navBar/NavBar';
 import Input from '../components/auth/inputs/TextInput';
 import SendButton from '../components/auth/inputs/SendButton';
-import { useDispatch, useSelector } from 'react-redux';
-import { State } from '../models/Store';
-import { changePasswordConfirm } from '../store/actions/auth/cadastro';
-import { passwordRecover } from '../helpers/database/firebase/auth';
-import { changePasswordRecover, changeRedirect } from '../store/actions/auth/common';
-import { Redirect } from 'react-router';
+import Loading from '../components/loading/Loading';
 
 //#endregion
 
@@ -35,28 +39,40 @@ import { Redirect } from 'react-router';
 
 type Props = {
 
-}
+};
 
 //#endregion
 
-export default function PasswordRecover(props: Props) {
+export default function PasswordRecover(props: Props) {    
     const dispatch = useDispatch();
-
+    
     //#region States
 
-    const email = useSelector((state: State) => state.auth.passwordRecover);
-    const redirect = useSelector((state: State) => state.auth.redirect);
+    const [email = '', setEmail] = useState();
+    const [redirect = false, setRedirect] = useState();
+
+    //#endregion
+
+    //#region Toasts
+
+    toast.configure();
+
+    const notifyError = (message: string) => {
+        toast.error(message, {
+            position: toast.POSITION.TOP_RIGHT,
+        });
+    }
 
     //#endregion
 
     //#region OnChanges
 
     const changeEmail = (event: any) => {
-        dispatch(changePasswordRecover(event.target.value));
+        setEmail(event.target.value);
     }
 
     const onChangeRedirect = (value: boolean): void => {
-        dispatch(changeRedirect(value));
+        setRedirect(value);
     }
 
     //#endregion
@@ -66,11 +82,17 @@ export default function PasswordRecover(props: Props) {
     const onClickSendButton = (event: any): void => {
         event.preventDefault();
         passwordRecover(email)
-            .then(result =>{
+            .then(result => {
                 console.log(result);
+
+                toast.dismiss();
+                dispatch(alterMessage(result.data));
+
                 onChangeRedirect(true);
             })
-            .catch(error => console.log(error.response.data));
+            .catch(error => {
+                notifyError(error.response.data);
+            })
     }
 
     //#endregion
@@ -79,27 +101,30 @@ export default function PasswordRecover(props: Props) {
 
     return (
         <Background>
-            {redirect ? <Redirect to="/"/> : <></> }
+            {redirect ?  <Redirect to="/" /> : <></>}
+
+            <Loading></Loading>
+
             <div className="row">
-                <NavBar titulo="" link="/passwordRecover" />
+                <NavBar titulo=""/>
             </div>
             <div className="row">
                 <div className="col offset-m2 offset-l2 s12 m8 l8" style={{ marginTop: "-3%" }}>
                     <div className="container" style={{ width: "50%", marginTop: "13%" }}>
-                        <NavBar link="/passwordRecover" titulo="Autentificação" style={{ marginTop: "8%", marginBottom: "0%", borderRadius: "100% 100% 0% 0%" }} styleTitulo={{ paddingBottom: "20%" }} />
+                        <NavBar titulo="E-mail" style={{ marginTop: "8%", marginBottom: "0%", borderRadius: "100% 100% 0% 0%" }} styleTitulo={{ paddingBottom: "20%" }} />
                         <div className="card grey lighten-2  hoverable" style={{ marginTop: "0%", borderTopLeftRadius: "0%", borderTopRightRadius: "0%" }}>
                             <h6 style={{ marginTop: "0%", marginLeft: "2%" }} >Digite seu e-mail para enviarmos uma mensagem de recuperação de senha.</h6>
                             <form>
                                 <div className="row" style={{ marginBottom: "0%" }}>
                                     <div className="input-field col s12 m12 l12">
                                         <div className="col offset-s2 offset-m2 offset-l2 s8 m8 l8">
-                                            <Input id="login" type="text" label="E-mail" value={email} onChange={changeEmail}/>
+                                            <Input id="login" type="text" label="E-mail" value={email} onChange={changeEmail} />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="row" style={{ marginTop: "4%", marginBottom: "-2%" }}>
                                     <div className="center col s12 m12 l12">
-                                        <SendButton label="Enviar" width="50%" onClick={onClickSendButton}/>
+                                        <SendButton label="Enviar" width="50%" onClick={onClickSendButton} />
                                     </div>
                                 </div>
                                 <br />

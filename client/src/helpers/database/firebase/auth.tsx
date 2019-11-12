@@ -6,26 +6,32 @@ import axios from 'axios';
 
 //#region Paths
 
-import { localServerUrl, serverUrl } from '../../../global/Paths';
+import { localServerUrl } from '../../../global/Paths';
+
+//#endregion
+
+//#region Interfaces
+
+import UserData from '../../../models/User';
 
 //#endregion
 
 //#region Functions
 
-const signUp = (email: string, password: string) => {
-    return axios.post(localServerUrl + 'signUp', { email: email, password: password });
+const signUp = (data: UserData) => {
+    return axios.post(localServerUrl + 'signUp', { data: data });
 }
 
 const signIn = (email: string, password: string) => {
-    return axios.post(localServerUrl + 'signIn', { email: email, password: password });
+    return axios.post(localServerUrl + 'signInStudent', { email: email, password: password });
 }
 
-const signOut = () =>{
+const signOut = () => {
     return axios.post(localServerUrl + 'signOut');
 }
 
-const passwordRecover = (email: string) =>{
-    return axios.post(localServerUrl + 'passwordRecover', {email: email});
+const passwordRecover = (email: string) => {
+    return axios.post(localServerUrl + 'passwordRecover', { email: email });
 }
 
 //#endregion

@@ -6,40 +6,25 @@ import { combineReducers } from "redux";
 
 //#region Reducers
 
-import { emailReducer, passwordReducer } from "./auth/login";
-import { nameReducer, subNameReducer, emailReducerC, confirmEmailReducer, confirmPasswordReducer, registrationReducer, accountTypeReducer, passwordReducerC } from "./auth/cadastro";
-import { redirectReducer, passwordRecoverReducer } from "./auth/common";
+import { messageReducer } from "./notifications/notifications";
+import { loadingReducer } from "./loading/loading";
 
 //#endregion
 
 //#region Combines
 
-const loginReducers = combineReducers({
-    email: emailReducer,
-    password: passwordReducer,
+const notificationsReducers = combineReducers({
+    message: messageReducer
 });
 
-const cadastroReducers = combineReducers({
-    name: nameReducer,
-    subname: subNameReducer,
-    registration: registrationReducer,
-    accountType: accountTypeReducer,
-    email: emailReducerC,
-    emailConfirm: confirmEmailReducer,
-    password: passwordReducerC,
-    passwordConfirm: confirmPasswordReducer
-})
-
-const authReducers = combineReducers({
-    redirect: redirectReducer,
-    passwordRecover: passwordRecoverReducer
+const loadingReducers = combineReducers({
+    loading: loadingReducer
 })
 
 const rootReducers = combineReducers({
-    login: loginReducers,
-    cadastro: cadastroReducers,
-    auth: authReducers
-})
+    loadingScreen: loadingReducers,
+    notifications: notificationsReducers
+});
 
 //#endregion
 

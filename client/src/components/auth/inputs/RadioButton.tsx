@@ -22,49 +22,45 @@ import React from 'react';
 
 //#endregion
 
-//#region Components
-
-const Options = () =>{
-
-}
-
-//#endregion
-
 //#region Propriedades
 
 type Props = {
     onChange: any,
     name: string,
-    label: string[],
-    value: string
+    labels: string[]
 }
 
 //#endregion
 
 export default function RadioButton(props: Props) {
-    const { onChange, name, label, value } = props;
+    const { onChange, name, labels } = props;
+
+    const changeValue = (index: number) => {
+        onChange(labels[index]);
+    }
 
     //#region XML
 
     return (
-            <form>
-                <div className="col s2">
+        <form>
+            {labels.map((label: string, index: number) => {
+                let margin = '5%';
+
+                if (label !== labels[0]) {
+                    margin = '20%';
+                }
+
+                return (<div className="col s2" style={{ marginLeft: margin }} >
                     <p>
                         <label>
-                            <input name={name} type="radio" value={value}/>
-                            <span>{label[0]}</span>
+                            <input name={name} type="radio" onChange={() => changeValue(index)} />
+                            <span>{label}</span>
                         </label>
                     </p>
                 </div>
-                <div className="col s2" style={{marginLeft:"20%"}}>
-                    <p>
-                        <label>
-                            <input name={name} type="radio" value={value}/>
-                            <span>{label[1]}</span>
-                        </label>
-                    </p>
-                </div>
-            </form>
+                )
+            })}
+        </form>
     );
 
     //#endregion

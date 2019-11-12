@@ -1,14 +1,16 @@
 //#region Npm
 
-import React from 'react';
-
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { Link, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 //#endregion
 
 //#region Actions
 
-import { changeEmail, changePassword, changeRedirect } from '../../../store/actions/auth/common';
+import { alterMessage } from '../../../store/actions/notifications/notifications';
+import { changeLoading } from '../../../store/actions/loading/loading';
 
 //#endregion
 
@@ -21,43 +23,71 @@ import { signIn } from '../../../helpers/database/firebase/auth';
 //#region Interfaces
 
 import { State } from '../../../models/Store';
-import Input from '../inputs/TextInput';
-import SendButton from '../inputs/SendButton';
-import { Link, Redirect } from 'react-router-dom';
 
 //#endregion
 
 //#region Components
 
-
+import Input from '../inputs/TextInput';
+import SendButton from '../inputs/SendButton';
 
 //#endregion
 
 export default function FormLogin() {
-
     const dispatch = useDispatch();
 
     //#region States
 
-    const email = useSelector((state: State) => state.login.email);
-    const password = useSelector((state: State) => state.login.password);
-    const redirect = useSelector((state: State) => state.auth.redirect);
+    const [email = '', setEmail] = useState();
+    const [password = '', setPassword] = useState();
+    const [redirect, setRedirect] = useState();
+
+    const notification = useSelector((state: State) => state.notifications.message);
+
+    //#endregion
+
+    //#region Toasts
+
+    toast.configure();
+
+    const notifyError = (message: string) => {
+        toast.error(message, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    }
+
+    // const notifySuccess = (message: string) => {
+    //     toast.success(message, {
+    //         position: toast.POSITION.TOP_RIGHT
+    //     });
+    // }
+
+    const externalNotify = (message: string) => {
+        toast.success(message, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    }
+
+    if (notification) {
+        let message = notification;
+        externalNotify(message);
+        dispatch(alterMessage(''));
+    }
 
     //#endregion
 
     //#region OnChanges
 
     const onChangeEmail = (event: any): void => {
-        dispatch(changeEmail(event.target.value));
+        setEmail(event.target.value);
     }
 
     const onChangePassword = (event: any): void => {
-        dispatch(changePassword(event.target.value));
+        setPassword(event.target.value);
     }
 
     const onChangeRedirect = (value: boolean): void => {
-        dispatch(changeRedirect(value));
-        dispatch(changeRedirect(false));
+        setRedirect(value);
     }
 
     //#endregion
@@ -66,12 +96,22 @@ export default function FormLogin() {
 
     const onClickLogin = (event: any): void => {
         event.preventDefault();
+        dispatch(changeLoading(true));
         signIn(email, password)
             .then(result => {
                 console.log(result);
-                onChangeRedirect(true)
+                setTimeout(() => {
+                    dispatch(changeLoading(false));
+                    onChangeRedirect(true);
+                }, 400)
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error);
+                setTimeout(() => {
+                    dispatch(changeLoading(false));
+                    notifyError(error.response.data);
+                }, 400)
+            })
     }
 
     //#endregion
@@ -80,32 +120,33 @@ export default function FormLogin() {
 
     return (
         <div>
-            {redirect ? <Redirect to="/home"/> : <></> }
-        <form>
-            <div className="row" style={{ marginBottom: "0%" }}>
-                <div className="input-field col s12 m12 l12">
-                    <div className="col offset-s2 offset-m2 offset-l2 s8 m8 l8">
-                        <Input id="login" type="text" label="E-mail" onChange={onChangeEmail} />
+            {redirect ? <Redirect to="/home" /> : <></>}
+
+            <form>
+                <div className="row" style={{ marginBottom: "0%" }}>
+                    <div className="input-field col s12 m12 l12">
+                        <div className="col offset-s2 offset-m2 offset-l2 s8 m8 l8">
+                            <Input id="login" type="text" label="E-mail" onChange={onChangeEmail} />
+                        </div>
+                    </div>
+                    <div className="input-field col s12 m12 l12" style={{ marginBottom: "-5%" }}>
+                        <div className="col offset-s2 offset-m2 offset-l2 s8 m8 l8">
+                            <Input id="senha" type="password" label="Senha" onChange={onChangePassword} />
+                        </div>
                     </div>
                 </div>
-                <div className="input-field col s12 m12 l12" style={{ marginBottom: "-5%" }}>
-                    <div className="col offset-s2 offset-m2 offset-l2 s8 m8 l8">
-                        <Input id="senha" type="password" label="Senha" onChange={onChangePassword} />
+                <div className="row" style={{ marginTop: "-10%" }}>
+                    <div className="col offset-s4 offset-m4 offset-l6 s8 m8 l6">
+                        <Link to={'/passwordRecover'}><p>Esqueceu sua senha?</p></Link>
                     </div>
                 </div>
-            </div>
-            <div className="row" style={{ marginTop: "-10%" }}>
-                <div className="col offset-s4 offset-m4 offset-l6 s8 m8 l6">
-                    <Link to={'/passwordRecover'}><p>Esqueceu sua senha?</p></Link>
+                <div className="row" style={{ marginTop: "4%", marginBottom: "-2%" }}>
+                    <div className="center col s12 m12 l12">
+                        <SendButton label="Entrar" width="50%" onClick={onClickLogin} />
+                    </div>
                 </div>
-            </div>
-            <div className="row" style={{ marginTop: "4%", marginBottom: "-2%" }}>
-                <div className="center col s12 m12 l12">
-                    <SendButton label="Entrar" width="50%" onClick={onClickLogin} />
-                </div>
-            </div>
-            <br />
-        </form>
+                <br />
+            </form>
         </div>
     );
 

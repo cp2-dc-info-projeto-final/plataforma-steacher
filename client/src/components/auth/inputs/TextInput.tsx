@@ -1,7 +1,6 @@
 //#region Npm
 
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core';
 
 //#endregion
 
@@ -42,18 +41,8 @@ type Props = {
 
 //#endregion
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        titulo: {
-            marginBottom: "0%"
-        }
-    }),
-);
-
 export default function Input(props: Props) {
     const { onChange, style , id , type , label ,value } = props;
-
-    const classes = useStyles();
 
     //#region XML
 

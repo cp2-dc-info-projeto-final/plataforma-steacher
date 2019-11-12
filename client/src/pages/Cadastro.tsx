@@ -26,8 +26,8 @@ import 'materialize-css/dist/css/materialize.min.css';
 
 import NavBar from '../components/navBar/NavBar';
 import Card from '../components/auth/card/Card';
-import Titulo from '../components/auth/titulo/Titulo';
 import { Background } from '../App.style';
+import Loading from '../components/loading/Loading';
 
 //#endregion
 
@@ -48,8 +48,9 @@ export default function Cadastro(props: Props) {
 
   return (
     <Background>
+      <Loading></Loading>
       <div className="row">
-        <NavBar titulo="" link="/cadastro"/>
+        <NavBar titulo="" />
       </div>
       <div className="row">
         <div className="col offset-m2 offset-l2 s12 m8 l8" style={{marginTop:"-3%"}}>
