@@ -1,0 +1,4 @@
+.section:hover {
+    background-color: #bdbdbd;
+    cursor: pointer;
+}
