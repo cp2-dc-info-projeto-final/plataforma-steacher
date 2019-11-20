@@ -1,11 +1,16 @@
-interface UserData {
-    name: string,
-    subName: string,
-    email: string,
-    emailConfirm: string,
-    password: string,
-    passwordConfirm: string,
-    registration: string,
+interface User {
+    id: string,
+    nome: string,
+    sobrenome: string,
+    matricula: string,
+    chats?: string[],
+    materia?: string,
+    turmaAtual?: string,
+    turmas?: string[],
+    foto?: string,
+    turno?: string,
+    contato: string,
+    userType: 'aluno' | 'professor'
 }
 
-export default UserData;
+export default User;
