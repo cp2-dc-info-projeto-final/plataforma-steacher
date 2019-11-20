@@ -6,7 +6,6 @@ import React from 'react';
 
 //#region Material-ui
 
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 //#endregion
 
@@ -30,13 +29,6 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 //#region Styles
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        titulo: {
-            boxShadow: "7px 10px 5px -5px rgba(0,0,0,0.75)"
-        }
-    }),
-);
 
 //#endregion
 
@@ -49,8 +41,6 @@ type Props = {
 //#endregion
 
 export default function Titulo(props: Props) {
-    const classes = useStyles();
-
     const { text } = props;
 
     //#region XML
@@ -58,7 +48,7 @@ export default function Titulo(props: Props) {
     return (
         <div className="section no-pad-bot" id="index-banner">
             <div className="container">
-                <h1 className={`header center white-text ${classes.titulo}`}>{text}</h1>
+                <h1 className={`header center white-text`} style={{boxShadow: "7px 10px 5px -5px rgba(0,0,0,0.75)"}}>{text}</h1>
             </div>
         </div>
     );
