@@ -34,6 +34,10 @@ const passwordRecover = (email: string) => {
     return axios.post(localServerUrl + 'passwordRecover', { email: email });
 }
 
+const isLogged = () =>{
+    return axios.post(localServerUrl + 'isLogged', {});
+}
+
 //#endregion
 
-export { signIn, signUp, signOut, passwordRecover };
+export { signIn, signUp, signOut, passwordRecover, isLogged };
