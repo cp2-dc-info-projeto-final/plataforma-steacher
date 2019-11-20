@@ -1,8 +1,6 @@
 //#region Npm
 
 import React from 'react';
-import SimpleBar from 'simplebar-react';
-import 'simplebar/dist/simplebar.min.css';
 
 //#endregion
 

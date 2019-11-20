@@ -1,14 +1,6 @@
 //#region Npm
 
 import React from 'react';
-import SimpleBar from 'simplebar-react';
-import 'simplebar/dist/simplebar.min.css';
-// import ScrollArea from 'react-scrollbar';
-// import 'react-scrollbar/dist/no-css'
-// import PerfectScrollbar from 'react-perfect-scrollbar'
-// import 'react-perfect-scrollbar/dist/css/styles.css';
-// import { Scrollbar } from 'react-scrollbars-custom';
-
 
 //#endregion
 
