@@ -12,7 +12,7 @@ import { localServerUrl } from '../../../global/Paths';
 
 //#region Interfaces
 
-import UserData from '../../../models/User';
+import UserData from '../../../models/UserData';
 
 //#endregion
 
@@ -23,7 +23,7 @@ const signUp = (data: UserData) => {
 }
 
 const signIn = (email: string, password: string) => {
-    return axios.post(localServerUrl + 'signInStudent', { email: email, password: password });
+    return axios.post(localServerUrl + 'signIn', { email: email, password: password });
 }
 
 const signOut = () => {

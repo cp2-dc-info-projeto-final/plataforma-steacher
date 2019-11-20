@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 
 import { alterMessage } from '../../../store/actions/notifications/notifications';
 import { changeLoading } from '../../../store/actions/loading/loading';
-import { changeAuth } from '../../../store/actions/auth/auth';
+import { changeAuth, changeUser } from '../../../store/actions/auth/auth';
 
 //#endregion
 
@@ -120,16 +120,18 @@ export default function FormCadastro(props: Props) {
       password: password,
       passwordConfirm: passwordConfirm,
       registration: registration,
+      type: "aluno"
     };
 
     signUp(data)
-      .then(() => {
+      .then(user => {
         setTimeout(() => {
           dispatch(changeLoading(false));
           toast.dismiss();
           dispatch(alterMessage('Usuário criado com sucesso.'))
           dispatch(changeAuth(true));
           changeRedirect(true);
+          dispatch(changeUser(user.data));
         }, 400);
       })
       .catch(error => {

@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { alterMessage } from '../../../store/actions/notifications/notifications';
 import { changeLoading } from '../../../store/actions/loading/loading';
-import { changeAuth } from '../../../store/actions/auth/auth';
+import { changeAuth, changeUser } from '../../../store/actions/auth/auth';
 
 //#endregion
 
@@ -100,11 +100,12 @@ export default function FormLogin() {
         dispatch(changeLoading(true));
         signIn(email, password)
             .then(result => {
-                console.log(result);
                 setTimeout(() => {
                     dispatch(changeLoading(false));
                     dispatch(changeAuth(true));
                     onChangeRedirect(true);
+                    dispatch(changeUser(result.data))
+                    console.log(result.data)
                 }, 400)
             })
             .catch(error => {
