@@ -1,5 +1,8 @@
+import User from "./User";
+
 interface AuthState {
-    auth: boolean
+    auth: boolean,
+    user: User | null
 }
 
 interface NotificationsState {

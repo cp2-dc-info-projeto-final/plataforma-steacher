@@ -8,14 +8,15 @@ import { combineReducers } from "redux";
 
 import { messageReducer } from "./notifications/notifications";
 import { loadingReducer } from "./loading/loading";
-import { authReducer } from "./auth/auth";
+import { authReducer, userReducer } from "./auth/auth";
 
 //#endregion
 
 //#region Combines
 
 const authReducers = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    user: userReducer
 });
 
 const notificationsReducers = combineReducers({
