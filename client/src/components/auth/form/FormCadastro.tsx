@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 
 import { alterMessage } from '../../../store/actions/notifications/notifications';
 import { changeLoading } from '../../../store/actions/loading/loading';
+import { changeAuth } from '../../../store/actions/auth/auth';
 
 //#endregion
 
@@ -127,12 +128,14 @@ export default function FormCadastro(props: Props) {
           dispatch(changeLoading(false));
           toast.dismiss();
           dispatch(alterMessage('Usuário criado com sucesso.'))
+          dispatch(changeAuth(true));
           changeRedirect(true);
         }, 400);
       })
       .catch(error => {
         setTimeout(() => {
           dispatch(changeLoading(false));
+          console.log(error.response.data)
           notifyError(error.response.data);
         }, 400)
       })
