@@ -1,3 +1,7 @@
+interface AuthState {
+    auth: boolean
+}
+
 interface NotificationsState {
     message: string
 }
@@ -7,6 +11,7 @@ interface LoadingState {
 }
 
 export interface State {
+    auth: AuthState,
     notifications: NotificationsState,
     loadingScreen: LoadingState
 }
