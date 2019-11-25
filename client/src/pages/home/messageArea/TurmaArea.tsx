@@ -32,6 +32,8 @@ import ChatBox from './chatBox/ChatBox';
 //#region Styles
 
 import './TurmaArea.css';
+import { State } from '../../../models/Store';
+const { Collapsible, CollapsibleItem } = require('react-materialize');
 
 //#endregion
 
@@ -48,7 +50,8 @@ export default function TurmaArea(props: Props) {
 
     //#region States
 
-
+    const classes = useSelector((state: State) => state.chats.classes);
+    console.log(classes)
 
     //#endregion
 
@@ -67,30 +70,34 @@ export default function TurmaArea(props: Props) {
     //#region XML
 
     return (
-        <div className="" style={{marginTop: "-2%"}}>
+        <div className="" style={{ marginTop: "-2%" }}>
             <ul className="collection" style={{ marginBottom: 0, marginTop: 0 }}>
-                <ul className="collapsible">
+                <Collapsible>
                     <li>
                         <div className="collapsible-header"><span className="flow-text">IN303</span></div>
                         <div className="collapsible-body" style={{ padding: "0px" }}>
-                            <ChatBox></ChatBox>
-                            <ChatBox></ChatBox>
-                            <ChatBox></ChatBox>
-                            <ChatBox></ChatBox>
-                            <ChatBox></ChatBox>
+                            <ul>
+                                <ChatBox></ChatBox>
+                                <ChatBox></ChatBox>
+                                <ChatBox></ChatBox>
+                                <ChatBox></ChatBox>
+                                <ChatBox></ChatBox>
+                            </ul>
                         </div>
                     </li>
                     <li>
                         <div className="collapsible-header"><span className="flow-text">IN303</span></div>
                         <div className="collapsible-body" style={{ padding: "0px" }}>
-                            <ChatBox></ChatBox>
-                            <ChatBox></ChatBox>
-                            <ChatBox></ChatBox>
-                            <ChatBox></ChatBox>
-                            <ChatBox></ChatBox>
+                            <ul>
+                                <ChatBox></ChatBox>
+                                <ChatBox></ChatBox>
+                                <ChatBox></ChatBox>
+                                <ChatBox></ChatBox>
+                                <ChatBox></ChatBox>
+                            </ul>
                         </div>
                     </li>
-                </ul>
+                </Collapsible>
             </ul>
         </div>
     );

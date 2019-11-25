@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Redirect } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 //#endregion
 
@@ -25,6 +25,9 @@ import { signUp } from '../../../helpers/database/firebase/auth';
 
 import Input from '../inputs/TextInput';
 import SendButton from '../inputs/SendButton';
+import { changePage } from '../../../store/actions/route/route';
+import { buscaDados } from './buscaDados';
+import { State } from '../../../models/Store';
 
 //#endregion
 
@@ -49,6 +52,8 @@ export default function FormCadastro(props: Props) {
   const [password = '', setPassword] = useState();
   const [passwordConfirm = '', setPasswordConfirm] = useState();
   const [redirect = false, setRedirect] = useState();
+
+  const user = useSelector((state: State) => state.auth.user);
 
   //#endregion
 
@@ -126,7 +131,6 @@ export default function FormCadastro(props: Props) {
     signUp(data)
       .then(user => {
         setTimeout(() => {
-          dispatch(changeLoading(false));
           toast.dismiss();
           dispatch(alterMessage('Usuário criado com sucesso.'))
           dispatch(changeAuth(true));
@@ -150,7 +154,7 @@ export default function FormCadastro(props: Props) {
 
   return (
     <div>
-      {redirect ? <Redirect to="/home" /> : <></>}
+      {redirect ? ( user.userType == 'admin' ? <Redirect to="/admin" /> : <Redirect to="/home" />) : <></>}
 
       <form>
         <div className="row" style={{ marginBottom: "0%" }}>

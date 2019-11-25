@@ -31,6 +31,7 @@ import { State } from '../../../models/Store';
 
 import Input from '../inputs/TextInput';
 import SendButton from '../inputs/SendButton';
+import { buscaDados } from './buscaDados';
 
 //#endregion
 
@@ -99,13 +100,11 @@ export default function FormLogin() {
         event.preventDefault();
         dispatch(changeLoading(true));
         signIn(email, password)
-            .then(result => {
+            .then(user => {
                 setTimeout(() => {
-                    dispatch(changeLoading(false));
                     dispatch(changeAuth(true));
                     onChangeRedirect(true);
-                    dispatch(changeUser(result.data))
-                    console.log(result.data)
+                    dispatch(changeUser(user.data))
                 }, 400)
             })
             .catch(error => {

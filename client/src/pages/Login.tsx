@@ -22,7 +22,7 @@ export default function Login() {
             <Card form="login" />
           </div>
           <div className="col offset-m4 offset-l4 s4 m4 l4 center">
-            <LinkButton link="/cadastro" label="Cadastre-se" width="80%"></LinkButton>
+            <LinkButton link="cadastro" label="Cadastre-se" width="80%"></LinkButton>
           </div>
         </div>
       </div>

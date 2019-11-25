@@ -94,7 +94,7 @@ export default function PasswordRecover(props: Props) {
                     toast.dismiss();
                     dispatch(alterMessage(result.data));
 
-                    onChangeRedirect(true);
+                    // onChangeRedirect(true);
                 }, 400)
             })
             .catch(error => {

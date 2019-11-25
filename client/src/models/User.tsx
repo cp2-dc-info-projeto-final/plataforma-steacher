@@ -1,5 +1,5 @@
 interface User {
-    id: string,
+    _id: string,
     nome: string,
     sobrenome: string,
     matricula: string,
@@ -10,7 +10,7 @@ interface User {
     foto?: string,
     turno?: string,
     contato: string,
-    userType: 'aluno' | 'professor'
+    userType: 'aluno' | 'professor' | 'admin'
 }
 
 export default User;

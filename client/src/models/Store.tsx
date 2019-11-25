@@ -1,8 +1,10 @@
 import User from "./User";
+import { Chat } from './Chat';
+import { Group } from './Group';
 
 interface AuthState {
     auth: boolean,
-    user: User | null
+    user: User
 }
 
 interface NotificationsState {
@@ -13,10 +15,22 @@ interface LoadingState {
     loading: string
 }
 
+interface RouteState {
+    page: string
+}
+
+interface ChatsState {
+    chats: Chat[],
+    groups: Group[],
+    classes: Group[]
+}
+
 export interface State {
     auth: AuthState,
     notifications: NotificationsState,
-    loadingScreen: LoadingState
+    loadingScreen: LoadingState,
+    route: RouteState,
+    chats: ChatsState
 }
 
 export interface Action {

@@ -71,7 +71,7 @@ export default function ChatBox(props: Props) {
             <span className="title">Title</span>
             <p>First Line</p>
             <p style={{ fontSize: "10pt" }}>Second Line</p>
-            <a href="#!" className="secondary-content"><span className="new badge red" data-badge-caption="mensagens">4</span></a>
+            <a href="#" className="secondary-content"><span className="new badge red" data-badge-caption="mensagens">4</span></a>
         </li>
 
     );
